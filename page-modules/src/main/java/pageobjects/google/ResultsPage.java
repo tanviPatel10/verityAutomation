@@ -32,4 +32,13 @@ public class ResultsPage {
         SelenideElement inputBox = getSearchField();
         inputBox.setValue(query).pressEnter();
     }
+
+    public int getIndexForText(final String resultText) {
+        for (int i = 0; i < getResults().size(); i++) {
+            if (getResults().get(i).getText().contains("health.govt.nz")) {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
