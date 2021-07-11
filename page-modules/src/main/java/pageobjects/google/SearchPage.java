@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class SearchPage {
 
     public void open() {
-        Selenide.open("https://www.google.com");
+        Selenide.open("http://www.google.com/ncr");
     }
 
     public SelenideElement getSearchField() {

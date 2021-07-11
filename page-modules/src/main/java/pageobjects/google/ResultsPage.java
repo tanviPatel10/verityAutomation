@@ -1,13 +1,19 @@
 package pageobjects.google;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ResultsPage {
     public ElementsCollection getResults() {
-        return $$("a[ping^='/url'] > div > cite");
+        return $$("a[href^='https://'] > div > cite");
+
+    }
+    public ElementsCollection getLinks() {
+        return $$x("//*[@id='rso']//h3[(contains(text(),'Software'))]");
     }
 
     public void clickResult(int index) {

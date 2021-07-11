@@ -30,16 +30,6 @@
             <version>2.7</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
-            </plugin>
-        </plugins>
-
-    </build>
 
     <modules>
         <module>page-modules</module>
