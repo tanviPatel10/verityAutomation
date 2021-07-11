@@ -4,15 +4,11 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.junit5.TextReportExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.commons.logging.LoggerFactory;
 import pageobjects.google.ResultsPage;
 import pageobjects.google.SearchPage;
 import util.AllureListenerExtension;
 
 import java.util.logging.Logger;
-
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.*;
 
 
 @ExtendWith({TextReportExtension.class, AllureListenerExtension.class})
@@ -22,31 +18,24 @@ public class MyTest {
 
 
     @Test
-    public void test() {
+    public void multipleGoogleSearchTest() {
         SearchPage searchPage = new SearchPage();
+
+        //search for text
         searchPage.open();
         searchPage.search("Software");
 
+        //verify first link
         ResultsPage resultsPage = new ResultsPage();
-//        resultsPage.clickResult(0);
+        resultsPage.getResults().first().shouldHave(Condition.text("Wikipedia"));
 
-        resultsPage.getResults().shouldHave(size(17));
-
-        LOG.info(resultsPage.getLinks().toString());
-
-//        resultsPage.getLinks("Software");
-
-//        resultsPage.clickResult(0);
-
-
-//        LOG.info("************************************");
-//        LOG.info("************************************");
-
-
-
-        resultsPage.getResults().first().shouldHave(Condition.text("Software"));
-
-        //working
-//        resultsPage.clickResult("wikipedia");
+        //search for another text
+        resultsPage.searchAgain("Testing");
+        for (int i = 0; i < resultsPage.getResults().size(); i++) {
+            if (resultsPage.getResults().get(i).getText().contains("health.govt.nz")) {
+                LOG.info("Index of the health.govt.nz is: " + i);
+                break;
+            }
+        }
     }
 }

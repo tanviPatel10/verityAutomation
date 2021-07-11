@@ -2,26 +2,34 @@ package pageobjects.google;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$x;
 
 public class ResultsPage {
     public ElementsCollection getResults() {
-        return $$("a[href^='https://'] > div > cite");
-
-    }
-    public ElementsCollection getLinks() {
-        return $$x("//*[@id='rso']//h3[(contains(text(),'Software'))]");
+        return $$x("//div[@id='rso']/div[@class='g']");
     }
 
+    public SelenideElement getSearchField() {
+        return $("input[type='text']");
+    }
+
+    @Step("Get search results with {index}")
     public void clickResult(int index) {
         getResults().get(index).click();
     }
 
+    @Step("Get search results with {searchText}")
     public void clickResult(String searchText) {
         getResults().find(text(searchText)).click();
     }
 
+    @Step("Search on the ResultsPage with {query}")
+    public void searchAgain(final String query) {
+        SelenideElement inputBox = getSearchField();
+        inputBox.setValue(query).pressEnter();
+    }
 }
