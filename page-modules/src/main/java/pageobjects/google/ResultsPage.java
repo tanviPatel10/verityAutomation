@@ -35,7 +35,7 @@ public class ResultsPage {
 
     public int getIndexForText(final String resultText) {
         for (int i = 0; i < getResults().size(); i++) {
-            if (getResults().get(i).getText().contains("health.govt.nz")) {
+            if (getResults().get(i).getText().contains(resultText)) {
                 return i;
             }
         }
