@@ -1,18 +1,26 @@
-package bla;
+package tests;
 
+import com.codeborne.selenide.junit5.TextReportExtension;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import pageobjects.google.ResultsPage;
+import pageobjects.google.SearchPage;
+import util.AllureListenerExtension;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.CollectionCondition.size;
 
+@ExtendWith({TextReportExtension.class, AllureListenerExtension.class})
 public class MyTest {
-    private static final Logger LOG = LoggerFactory.getLogger(MyTest.class);
 
     @Test
     public void test() {
-        open("https://www.google.com");
-        LOG.info("Hello");
-    }
+        SearchPage searchPage = new SearchPage();
+        searchPage.open();
+        searchPage.search("Hello World");
 
+        ResultsPage resultsPage = new ResultsPage();
+        resultsPage.getResults().shouldHave(size(6));
+
+        resultsPage.clickResult("facebook");
+    }
 }
