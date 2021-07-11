@@ -12,13 +12,13 @@ import java.util.logging.Logger;
 
 
 @ExtendWith({TextReportExtension.class, AllureListenerExtension.class})
-public class MyTest {
+public class MultipleGoogleSearchTest {
 
-    private static final Logger LOG = Logger.getLogger(MyTest.class.getName());
+    private static final Logger LOG = Logger.getLogger(MultipleGoogleSearchTest.class.getName());
 
 
     @Test
-    public void multipleGoogleSearchTest() {
+    public void multipleGoogleSearchAndVerificationTest() {
         SearchPage searchPage = new SearchPage();
 
         //search for text
