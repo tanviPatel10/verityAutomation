@@ -9,5 +9,13 @@
 	  <version>1</version>
   </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.22.3</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
